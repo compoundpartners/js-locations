@@ -1,0 +1,6 @@
+{
+    "package-name": "js-locations",
+    "installed-apps": [
+        "js_locations"
+    ]
+}
