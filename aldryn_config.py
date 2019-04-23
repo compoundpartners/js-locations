@@ -4,7 +4,7 @@ class Form(forms.BaseForm):
     enable_dx = forms.CheckboxField(
         "Enable DX",
         required=False,
-        initial=True)
+        initial=False)
 
     def to_settings(self, data, settings):
 
