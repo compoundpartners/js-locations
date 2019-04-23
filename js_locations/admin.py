@@ -10,11 +10,31 @@ from parler.admin import TranslatableAdmin
 from aldryn_translation_tools.admin import AllTranslationsMixin
 
 from .models import Location
+from .constants import ENABLE_DX
 
 class LocationAdmin(AllTranslationsMixin,
                  TranslatableAdmin):
     list_display = ['__str__', 'office', 'city', 'is_published',]
     search_filter = ['translations__name', 'translations__office']
+
+    advanced_settings_fields = (
+        'phone',
+        'fax',
+        'email',
+    )
+    if ENABLE_DX:
+        advanced_settings_fields += (
+            'dx',
+        )
+    advanced_settings_fields += (
+        'website',
+        'address',
+        'city',
+        'postal_code',
+        'lat',
+        'lng'
+    )
+
     fieldsets = (
         (None, {
             'fields': (
@@ -25,17 +45,7 @@ class LocationAdmin(AllTranslationsMixin,
             ),
         }),
         (_('Contact (untranslated)'), {
-            'fields': (
-                'phone',
-                'fax',
-                'email',
-                'website',
-                'address',
-                'postal_code',
-                'city',
-                'lat',
-                'lng'
-            )
+            'fields': advanced_settings_fields,
         }),
     )
 
