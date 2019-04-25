@@ -51,8 +51,8 @@ class Location(TranslationHelperMixin, TranslatedAutoSlugifyMixin,
     lng = models.FloatField(_('Longitude'), null=True, blank=True)
     is_published = models.BooleanField(
         verbose_name=_('show on website'), default=True)
-    dx = models.TextField(
-        verbose_name=_('DX'), blank=True, default='')
+    dx = models.CharField(
+        verbose_name=_('DX'), max_length=255, blank=True, default='')
 
     objects = LocationManager()
 
