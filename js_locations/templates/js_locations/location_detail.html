@@ -5,4 +5,71 @@
 
 {% block content %}
     <h2>{% render_model location "name" %}</h2>
+
+    {% if location.office %}
+        <div>
+            {# <p><b>Office:</b>  {{ location.office }}</p>#}
+        </div>
+    {% endif %}
+
+    {% if location.address %}
+        <div>
+            <p><b>Address:</b>  {{ location.address }}</p>
+        </div>
+    {% endif %}
+
+    {% if location.postal_code %}
+        <div>
+            <p><b>Postal Code:</b>  {{ location.postal_code }}</p>
+        </div>
+    {% endif %}
+
+    {% if location.city %}
+        <div>
+            <p><b>City:</b>  {{ location.city }}</p>
+        </div>
+    {% endif %}
+
+    {% if location.phone %}
+        <div>
+            <p><b>Phone:</b>  {{ location.phone }}</p>
+        </div>
+    {% endif %}
+
+    {% if location.fax %}
+        <div>
+            <p><b>Fax:</b>  {{ location.fax }}</p>
+        </div>
+    {% endif %}
+
+    {% if location.email %}
+        <div>
+            <p><b>Email:</b>  {{ location.email }}</p>
+        </div>
+    {% endif %}
+
+    {% if location.website %}
+        <div>
+            <p><b>Website:</b>  {{ location.website }}</p>
+        </div>
+    {% endif %}
+
+    {% if location.lat %}
+        <div>
+            <p><b>Lat:</b>  {{ location.lat }}</p>
+        </div>
+    {% endif %}
+
+    {% if location.lng %}
+        <div>
+            <p><b>Long:</b>  {{ location.lng }}</p>
+        </div>
+    {% endif %}
+
+    {% if location.dx %}
+        <div>
+            <p><b>DX:</b>  {{ location.dx }}</p>
+        </div>
+    {% endif %}
+
 {% endblock content %}
