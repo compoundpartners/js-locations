@@ -14,6 +14,7 @@ from aldryn_translation_tools.models import (
     TranslationHelperMixin,
 )
 from cms.utils.i18n import get_current_language, get_default_language
+from cms.models.fields import PlaceholderField
 from parler.models import TranslatableModel, TranslatedFields
 
 from .managers import LocationManager
@@ -53,6 +54,7 @@ class Location(TranslationHelperMixin, TranslatedAutoSlugifyMixin,
         verbose_name=_('show on website'), default=True)
     dx = models.CharField(
         verbose_name=_('DX'), max_length=255, blank=True, default='')
+    content = PlaceholderField('content', related_name='location_content')
 
     objects = LocationManager()
 
