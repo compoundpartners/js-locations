@@ -55,6 +55,9 @@ class Location(TranslationHelperMixin, TranslatedAutoSlugifyMixin,
     dx = models.CharField(
         verbose_name=_('DX'), max_length=255, blank=True, default='')
     content = PlaceholderField('content', related_name='location_content')
+    banner = PlaceholderField('banner', related_name='location_banner')
+    sidebar = PlaceholderField('sidebar', related_name='location_sidebar')
+    related = PlaceholderField('related', related_name='location_related')
 
     objects = LocationManager()
 
