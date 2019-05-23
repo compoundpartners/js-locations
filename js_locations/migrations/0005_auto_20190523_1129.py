@@ -10,7 +10,7 @@ import django.db.models.deletion
 def forward(apps, schema_editor):
     Location = django_apps.get_model('js_locations.Location')
     from cms.models import Placeholder
-    placeholder_names = ['banner', 'sidebar', 'related']
+    placeholder_names = ['content', 'banner', 'sidebar', 'related']
 
     for location in Location.objects.all():
         for placeholder_name in placeholder_names:

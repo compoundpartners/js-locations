@@ -40,5 +40,5 @@ class Migration(migrations.Migration):
             name='content',
             field=cms.models.fields.PlaceholderField(editable=False, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='location_content', slotname='content', to='cms.Placeholder'),
         ),
-        migrations.RunPython(forward, backwards)
+        #migrations.RunPython(forward, backwards)
     ]
