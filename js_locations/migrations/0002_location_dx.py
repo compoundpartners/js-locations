@@ -8,6 +8,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
+        ('aldryn_people', '0033_move_locations'),
         ('js_locations', '0001_initial'),
     ]
 

@@ -13,6 +13,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
+        ('aldryn_people', '0032_person_companies')
     ]
 
     state_operations = [
