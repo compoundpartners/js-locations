@@ -20,7 +20,7 @@ class LocationMenu(CMSAttachMenu):
     def get_nodes(self, request):
         nodes = []
         language = get_language_from_request(request, check_path=True)
-        locations = (Location.objects.language(language)
+        locations = (Location.objects.published().language(language)
                                .active_translations(language))
 
         for location in locations:
