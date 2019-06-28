@@ -42,6 +42,7 @@ class LocationAdmin(AllTranslationsMixin,
                 'slug',
                 'office',
                 'is_published',
+                'featured_image',
             ),
         }),
         (_('Contact (untranslated)'), {

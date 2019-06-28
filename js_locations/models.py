@@ -16,6 +16,7 @@ from aldryn_translation_tools.models import (
 from cms.utils.i18n import get_current_language, get_default_language
 from cms.models.fields import PlaceholderField
 from parler.models import TranslatableModel, TranslatedFields
+from filer.fields.image import FilerImageField
 
 from .managers import LocationManager
 from . import DEFAULT_APP_NAMESPACE
@@ -58,6 +59,12 @@ class Location(TranslationHelperMixin, TranslatedAutoSlugifyMixin,
     banner = PlaceholderField('banner', related_name='location_banner')
     sidebar = PlaceholderField('sidebar', related_name='location_sidebar')
     related = PlaceholderField('related', related_name='location_related')
+    featured_image = FilerImageField(
+        verbose_name=_('featured image'),
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+    )
 
     objects = LocationManager()
 
