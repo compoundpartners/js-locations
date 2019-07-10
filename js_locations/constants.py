@@ -8,3 +8,13 @@ ENABLE_DX = getattr(
     False,
 )
 
+SITEMAP_CHANGEFREQ = getattr(
+    settings,
+    'LOCATIONS_SITEMAP_CHANGEFREQ',
+    'monthly',
+)
+SITEMAP_PRIORITY = getattr(
+    settings,
+    'LOCATIONS_SITEMAP_PRIORITY',
+    0.5,
+)

@@ -33,6 +33,10 @@ class LocationAdmin(AllTranslationsMixin,
         'postal_code',
         'lat',
         'lng'
+        'show_on_sitemap',
+        'show_on_xml_sitemap',
+        'noindex',
+        'nofollow',
     )
 
     fieldsets = (
