@@ -24,17 +24,21 @@ class LocationMenu(CMSAttachMenu):
                                .active_translations(language))
 
         for location in locations:
+            attr = {}
             try:
                 url = location.get_absolute_url(language=language)
             except NoReverseMatch:
                 url = None
-            if url:
+            if location.website:
+                attr['redirect_url'] = location.website
+            if url or attr:
                 node = NavigationNode(
                     location.safe_translation_getter(
                         'name', default=_('location: {0}').format(location.pk),
                         language_code=language),
                     url,
                     location.pk,
+                    attr=attr
                 )
                 nodes.append(node)
         return nodes
