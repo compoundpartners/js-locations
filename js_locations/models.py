@@ -2,11 +2,15 @@
 
 from __future__ import unicode_literals
 
-from django.core.urlresolvers import reverse, NoReverseMatch
+try:
+    from django.core.urlresolvers import reverse, NoReverseMatch
+except ImportError:
+    # Django 2.0
+    from django.urls import reverse, NoReverseMatch
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 
-from django.utils.translation import ugettext_lazy as _, override, force_text
+from django.utils.translation import ugettext_lazy as _, override
 from six import text_type
 
 from aldryn_translation_tools.models import (
