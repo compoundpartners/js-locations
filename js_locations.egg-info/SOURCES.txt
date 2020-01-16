@@ -5,14 +5,15 @@ setup.py
 js_locations/__init__.py
 js_locations/admin.py
 js_locations/apps.py
-js_locations/cms_appconfig.py
 js_locations/cms_apps.py
+js_locations/cms_menus.py
 js_locations/cms_toolbars.py
 js_locations/cms_wizards.py
 js_locations/constants.py
 js_locations/managers.py
 js_locations/menu.py
 js_locations/models.py
+js_locations/sitemap.py
 js_locations/urls.py
 js_locations/views.py
 js_locations.egg-info/PKG-INFO
@@ -23,6 +24,10 @@ js_locations.egg-info/top_level.txt
 js_locations/migrations/0001_initial.py
 js_locations/migrations/0002_location_dx.py
 js_locations/migrations/0003_auto_20190425_0502.py
+js_locations/migrations/0004_location_content.py
+js_locations/migrations/0005_auto_20190523_1129.py
+js_locations/migrations/0006_location_featured_image.py
+js_locations/migrations/0007_auto_20190709_2309.py
 js_locations/migrations/__init__.py
 js_locations/templates/js_locations/location_detail.html
 js_locations/templates/js_locations/location_list.html
