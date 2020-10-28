@@ -8,6 +8,7 @@ js_locations/admin.py
 js_locations/apps.py
 js_locations/cms_apps.py
 js_locations/cms_menus.py
+js_locations/cms_plugins.py
 js_locations/cms_toolbars.py
 js_locations/cms_wizards.py
 js_locations/constants.py
@@ -29,6 +30,8 @@ js_locations/migrations/0004_location_content.py
 js_locations/migrations/0005_auto_20190523_1129.py
 js_locations/migrations/0006_location_featured_image.py
 js_locations/migrations/0007_auto_20190709_2309.py
+js_locations/migrations/0008_auto_20201026_1623.py
 js_locations/migrations/__init__.py
 js_locations/templates/js_locations/location_detail.html
 js_locations/templates/js_locations/location_list.html
+js_locations/templates/js_locations/plugins/locations.html

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django.conf import settings
+from django.utils.text import slugify
 
 ENABLE_DX = getattr(
     settings,
@@ -13,8 +14,17 @@ SITEMAP_CHANGEFREQ = getattr(
     'LOCATIONS_SITEMAP_CHANGEFREQ',
     'monthly',
 )
+
 SITEMAP_PRIORITY = getattr(
     settings,
     'LOCATIONS_SITEMAP_PRIORITY',
     0.5,
 )
+
+SPECIFIC_LOCATIONS_LAYOUTS = getattr(
+    settings,
+    'LOCATIONS_SPECIFIC_LOCATIONS_LAYOUTS',
+    (),
+)
+SPECIFIC_LOCATIONS_LAYOUTS = zip(list(map(lambda s: slugify(s).replace('-', '_'), ('',) + SPECIFIC_LOCATIONS_LAYOUTS)), ('default',) + SPECIFIC_LOCATIONS_LAYOUTS)
+
