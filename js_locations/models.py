@@ -39,6 +39,8 @@ class Location(TranslationHelperMixin, TranslatedAutoSlugifyMixin,
             blank=True,
             help_text=_("Leave blank to auto-generate a unique slug.")),
         office = models.CharField(_('Office name'), max_length=255,
+            blank=True),
+        link = models.CharField(_('Link'), max_length=255,
             blank=True)
     )
     address = models.TextField(

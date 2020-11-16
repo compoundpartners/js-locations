@@ -15,7 +15,7 @@ from .constants import ENABLE_DX
 class LocationAdmin(AllTranslationsMixin,
                  TranslatableAdmin):
     list_display = ['__str__', 'office', 'city', 'is_published',]
-    search_filter = ['translations__name', 'translations__office']
+    search_filter = ['translations__name', 'translations__office', 'translations__link']
 
     advanced_settings_fields = (
         'phone',
@@ -45,6 +45,7 @@ class LocationAdmin(AllTranslationsMixin,
                 'name',
                 'slug',
                 'office',
+                'link',
                 'is_published',
                 'featured_image',
             ),

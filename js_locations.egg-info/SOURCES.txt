@@ -31,6 +31,7 @@ js_locations/migrations/0005_auto_20190523_1129.py
 js_locations/migrations/0006_location_featured_image.py
 js_locations/migrations/0007_auto_20190709_2309.py
 js_locations/migrations/0008_auto_20201026_1623.py
+js_locations/migrations/0009_auto_20201116_1520.py
 js_locations/migrations/__init__.py
 js_locations/templates/js_locations/location_detail.html
 js_locations/templates/js_locations/location_list.html
