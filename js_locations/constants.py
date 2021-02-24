@@ -15,6 +15,12 @@ SITEMAP_CHANGEFREQ = getattr(
     'monthly',
 )
 
+CUSTOM_FIELDS = getattr(
+    settings,
+    'LOCATIONS_CUSTOM_FIELDS',
+    {},
+)
+
 SITEMAP_PRIORITY = getattr(
     settings,
     'LOCATIONS_SITEMAP_PRIORITY',

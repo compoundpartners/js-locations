@@ -7,13 +7,38 @@ from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 
 from parler.admin import TranslatableAdmin
+from parler.forms import TranslatableModelForm
 from aldryn_translation_tools.admin import AllTranslationsMixin
 
 from .models import Location
-from .constants import ENABLE_DX
+from .constants import ENABLE_DX, CUSTOM_FIELDS
+
+try:
+    from js_custom_fields.forms import CustomFieldsFormMixin
+except:
+    class CustomFieldsFormMixin(object):
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+            if 'custom_fields' in self.fields:
+                self.fields['custom_fields'].widget = forms.HiddenInput()
+
+
+class LocationAdminForm(CustomFieldsFormMixin, TranslatableModelForm):
+
+    custom_fields = 'get_custom_fields'
+
+    class Meta:
+        model = Location
+        fields = '__all__'
+
+    def get_custom_fields(self):
+        return CUSTOM_FIELDS
+
+
 
 class LocationAdmin(AllTranslationsMixin,
-                 TranslatableAdmin):
+                    TranslatableAdmin):
+    form = LocationAdminForm
     list_display = ['__str__', 'office', 'city', 'is_published',]
     search_filter = ['translations__name', 'translations__office', 'translations__link']
 
@@ -33,6 +58,7 @@ class LocationAdmin(AllTranslationsMixin,
         'postal_code',
         'lat',
         'lng',
+        'custom_fields',
         'show_on_sitemap',
         'show_on_xml_sitemap',
         'noindex',

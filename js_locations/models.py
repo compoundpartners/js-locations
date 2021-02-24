@@ -8,8 +8,8 @@ except ImportError:
     # Django 2.0
     from django.urls import reverse, NoReverseMatch
 from django.db import models
+from django.contrib.postgres.fields import JSONField
 from django.utils.encoding import python_2_unicode_compatible
-
 from django.utils.translation import ugettext_lazy as _, override, ugettext
 from six import text_type
 
@@ -77,6 +77,7 @@ class Location(TranslationHelperMixin, TranslatedAutoSlugifyMixin,
     show_on_xml_sitemap = models.BooleanField(_('Show on xml sitemap'), null=False, default=True)
     noindex = models.BooleanField(_('noindex'), null=False, default=False)
     nofollow = models.BooleanField(_('nofollow'), null=False, default=False)
+    custom_fields = JSONField(blank=True, null=True)
 
     objects = LocationManager()
 
