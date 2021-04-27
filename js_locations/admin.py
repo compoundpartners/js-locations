@@ -2,8 +2,10 @@
 
 from __future__ import unicode_literals
 
+from django import forms
 from django.conf import settings
 from django.contrib import admin
+from django.utils.html import mark_safe
 from django.utils.translation import ugettext_lazy as _
 
 from parler.admin import TranslatableAdmin
@@ -70,6 +72,7 @@ class LocationAdmin(AllTranslationsMixin,
             'fields': (
                 'name',
                 'slug',
+                'namespace',
                 'office',
                 'link',
                 'is_published',
@@ -80,6 +83,9 @@ class LocationAdmin(AllTranslationsMixin,
             'fields': advanced_settings_fields,
         }),
     )
+
+    def all_translations(self, object):
+        return mark_safe(super().all_translations(object))
 
 
 admin.site.register(Location, LocationAdmin)

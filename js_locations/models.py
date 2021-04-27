@@ -27,11 +27,20 @@ from sortedm2m.fields import SortedManyToManyField
 from .managers import LocationManager
 from . import DEFAULT_APP_NAMESPACE
 
+try:
+    from custom.js_locations.models import CustomLocationMixin
+except ImportError:
+    class CustomLocationMixin(object):
+        pass
 
 @python_2_unicode_compatible
-class Location(TranslationHelperMixin, TranslatedAutoSlugifyMixin,
-            TranslatableModel):
+class Location(CustomLocationMixin,
+               TranslationHelperMixin,
+               TranslatedAutoSlugifyMixin,
+               TranslatableModel):
+
     slug_source_field_name = 'name'
+
     translations = TranslatedFields(
         name = models.CharField(_('Display name'), max_length=255),
         slug = models.SlugField(
@@ -79,11 +88,36 @@ class Location(TranslationHelperMixin, TranslatedAutoSlugifyMixin,
     nofollow = models.BooleanField(_('nofollow'), null=False, default=False)
     custom_fields = JSONField(blank=True, null=True)
 
+    #app config fields and methods
+    type = models.CharField(
+        _('Type'),
+        max_length=100,
+        default='js_locations.Location',
+    )
+    namespace = models.CharField(
+        _('Instance namespace'),
+        #default=None,
+        max_length=100,
+        unique=True,
+        blank=True,
+        null=True,
+    )
+
+    cmsapp = None
+
+    def save(self, *args, **kwargs):
+        self.type = '%s.%s' % (
+            self.__class__.__module__, self.__class__.__name__)
+        if not self.namespace:
+            self.namespace = self.safe_translation_getter('slug')
+        super().save(*args, **kwargs)
+
     objects = LocationManager()
 
     class Meta:
         verbose_name = 'Location'
         verbose_name_plural = 'Locations'
+        #unique_together = ('type', 'namespace')
 
     def __str__(self):
         return self.safe_translation_getter('name')
