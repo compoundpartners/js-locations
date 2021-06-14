@@ -11,6 +11,7 @@ from django.db import models
 from django.contrib.postgres.fields import JSONField
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _, override, ugettext
+from django.utils.text import slugify
 from six import text_type
 
 from aldryn_translation_tools.models import (
@@ -108,8 +109,8 @@ class Location(CustomLocationMixin,
     def save(self, *args, **kwargs):
         self.type = '%s.%s' % (
             self.__class__.__module__, self.__class__.__name__)
-        if not self.namespace:
-            self.namespace = self.safe_translation_getter('slug')
+        if not self.namespace or self.namespace.startswith('202'):
+            self.namespace = 'location-%s' % slugify(self.safe_translation_getter('name'))
         super().save(*args, **kwargs)
 
     objects = LocationManager()
