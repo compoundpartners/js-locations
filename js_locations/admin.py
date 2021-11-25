@@ -43,9 +43,11 @@ class LocationAdmin(AllTranslationsMixin,
     form = LocationAdminForm
     list_display = ['__str__', 'office', 'city', 'is_published',]
     search_filter = ['translations__name', 'translations__office', 'translations__link']
+    filter_horizontal = ['categories']
 
     advanced_settings_fields = (
         'phone',
+        'contact',
         'fax',
         'email',
     )
@@ -57,9 +59,11 @@ class LocationAdmin(AllTranslationsMixin,
         'website',
         'address',
         'city',
+        'county',
         'postal_code',
         'lat',
         'lng',
+        'categories',
         'custom_fields',
         'show_on_sitemap',
         'show_on_xml_sitemap',

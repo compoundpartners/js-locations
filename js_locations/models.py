@@ -24,6 +24,8 @@ from cms.models.pluginmodel import CMSPlugin
 from parler.models import TranslatableModel, TranslatedFields
 from filer.fields.image import FilerImageField
 from sortedm2m.fields import SortedManyToManyField
+from aldryn_categories.fields import CategoryManyToManyField
+from aldryn_categories.models import Category
 
 from .managers import LocationManager
 from . import DEFAULT_APP_NAMESPACE
@@ -59,8 +61,12 @@ class Location(CustomLocationMixin,
         verbose_name=_('postal code'), max_length=20, blank=True)
     city = models.CharField(
         verbose_name=_('city'), max_length=255, blank=True)
+    county = models.CharField(
+        verbose_name=_('county'), max_length=255, blank=True)
     phone = models.CharField(
         verbose_name=_('phone'), null=True, blank=True, max_length=100)
+    contact = models.CharField(
+        verbose_name=_('Contact Name'), null=True, blank=True, max_length=255)
     fax = models.CharField(
         verbose_name=_('fax'), null=True, blank=True, max_length=100)
     email = models.EmailField(
@@ -83,6 +89,10 @@ class Location(CustomLocationMixin,
         blank=True,
         on_delete=models.SET_NULL,
     )
+    categories = CategoryManyToManyField(
+        Category,
+        verbose_name=_('categories'),
+        blank=True)
     show_on_sitemap = models.BooleanField(_('Show on sitemap'), null=False, default=True)
     show_on_xml_sitemap = models.BooleanField(_('Show on xml sitemap'), null=False, default=True)
     noindex = models.BooleanField(_('noindex'), null=False, default=False)

@@ -1,3 +1,3 @@
-__version__ = "0.2.6"
+__version__ = "0.2.8"
 
 DEFAULT_APP_NAMESPACE = 'js_locations'
