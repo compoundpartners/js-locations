@@ -13,7 +13,7 @@ from parler.forms import TranslatableModelForm
 from aldryn_translation_tools.admin import AllTranslationsMixin
 
 from .models import Location
-from .constants import ENABLE_DX, CUSTOM_FIELDS
+from .constants import ENABLE_DX, ENABLE_CURRENCIES, CUSTOM_FIELDS
 
 try:
     from js_custom_fields.forms import CustomFieldsFormMixin
@@ -57,6 +57,7 @@ class LocationAdmin(AllTranslationsMixin,
         )
     advanced_settings_fields += (
         'website',
+        'address_locality',
         'address',
         'city',
         'county',
@@ -64,6 +65,12 @@ class LocationAdmin(AllTranslationsMixin,
         'lat',
         'lng',
         'categories',
+    )
+    if ENABLE_CURRENCIES:
+        advanced_settings_fields += (
+            'currencies_accepted',
+        )
+    advanced_settings_fields += (
         'custom_fields',
         'show_on_sitemap',
         'show_on_xml_sitemap',
@@ -77,6 +84,7 @@ class LocationAdmin(AllTranslationsMixin,
                 'name',
                 'slug',
                 'namespace',
+                'description',
                 'office',
                 'link',
                 'is_published',

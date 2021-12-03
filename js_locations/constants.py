@@ -9,6 +9,12 @@ ENABLE_DX = getattr(
     False,
 )
 
+ENABLE_CURRENCIES = getattr(
+    settings,
+    'LOCATIONS_ENABLE_CURRENCIES',
+    False,
+)
+
 SITEMAP_CHANGEFREQ = getattr(
     settings,
     'LOCATIONS_SITEMAP_CHANGEFREQ',

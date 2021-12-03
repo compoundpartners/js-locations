@@ -50,11 +50,18 @@ class Location(CustomLocationMixin,
             _('slug'), max_length=255, default='',
             blank=True,
             help_text=_("Leave blank to auto-generate a unique slug.")),
+        description=models.TextField(
+            _('Description'),
+            blank=True,
+            default='',
+        ),
         office = models.CharField(_('Office name'), max_length=255,
             blank=True),
         link = models.CharField(_('Link'), max_length=255,
             blank=True)
     )
+    address_locality = models.TextField(
+        verbose_name=_('address locality'), blank=True)
     address = models.TextField(
         verbose_name=_('address'), blank=True)
     postal_code = models.CharField(
@@ -62,7 +69,7 @@ class Location(CustomLocationMixin,
     city = models.CharField(
         verbose_name=_('city'), max_length=255, blank=True)
     county = models.CharField(
-        verbose_name=_('county'), max_length=255, blank=True)
+        verbose_name=_('county'), max_length=255, null=True, blank=True)
     phone = models.CharField(
         verbose_name=_('phone'), null=True, blank=True, max_length=100)
     contact = models.CharField(
@@ -79,6 +86,8 @@ class Location(CustomLocationMixin,
         verbose_name=_('show on website'), default=True)
     dx = models.CharField(
         verbose_name=_('DX'), max_length=255, blank=True, default='')
+    currencies_accepted = models.CharField(
+        verbose_name=_('currencies accepted'), max_length=255, blank=True, default='')
     content = PlaceholderField('content', related_name='location_content')
     banner = PlaceholderField('banner', related_name='location_banner')
     sidebar = PlaceholderField('sidebar', related_name='location_sidebar')
@@ -120,7 +129,7 @@ class Location(CustomLocationMixin,
         self.type = '%s.%s' % (
             self.__class__.__module__, self.__class__.__name__)
         if not self.namespace or self.namespace.startswith('202'):
-            self.namespace = 'location-%s' % slugify(self.safe_translation_getter('name'))
+            self.namespace = 'location-%s-%s' % (slugify(self.safe_translation_getter('name')), self.pk)
         super().save(*args, **kwargs)
 
     objects = LocationManager()
